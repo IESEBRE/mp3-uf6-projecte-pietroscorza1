@@ -1,1 +1,16 @@
--- Poseu el codi dels procediments/funcions emmagatzemats, triggers, ..., usats al projecte
+create or replace PROCEDURE taula AS 
+BEGIN
+    EXECUTE IMMEDIATE '
+    CREATE TABLE CLIENTES (
+        NOM VARCHAR2(50) PRIMARY KEY,
+        INGRES NUMBER(12,2) NOT NULL,
+        EDAD NUMBER NOT NULL,
+        ACTIU CHAR(1) NOT NULL,
+        GENERE VARCHAR2(20) NOT NULL
+    )
+    ';
+    DBMS_OUTPUT.PUT_LINE('Taula creada');
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('ERROR AL CREAR LA TABLA: ' || SQLERRM);
+END;
